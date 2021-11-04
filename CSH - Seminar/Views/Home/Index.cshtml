@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Lotto";
+}
+
+<div class="center-screen"
+     style="
+        background-color: white;
+        width: 500px;
+        position: absolute;
+        border: 5px solid white;
+        border-radius: 10px;
+    ">
+    <div style="display: flex; justify-content: center;">
+        <img src="~/Images/logo.jpg" style="width: 200px;" />
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        @Html.ActionLink("Start", "Index", "Game", new { lstApps = Json.Encode(ViewBag.listIWantToSend), dopunskiBroj = 0, showDopunski = false, brojPrikaza = 0 }, new { @class = "btn btn-warning" })
+    </div>
+</div>

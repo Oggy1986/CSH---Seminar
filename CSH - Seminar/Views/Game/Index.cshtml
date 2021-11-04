@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Lotto";
+}
+
+<div class="center-screen"
+     style="
+        background-color: white;
+        width: 500px;
+        position: absolute;
+        border: 5px solid white;
+        border-radius: 10px;
+    ">
+    <div style="display: flex; justify-content: center;">
+        <img src="~/Images/logo.jpg" style="width: 200px;" />
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <h3>Izvučeni brojevi su:</h3>
+    </div>
+    <div style="display:flex">
+        @for (int i = 0; i < ViewBag.brojPrikaza; i++)
+        {
+            <div class="numberCircle">@ViewBag.listIWantToSend[i]</div>
+        }
+    </div>
+
+    @if (ViewBag.showDopunski == true)
+    {
+        <div style="display: flex; justify-content: center;">
+            <h3>Dopunski broj</h3>
+        </div>
+
+        <div style="display:flex">
+            <div class="numberCircle">@ViewBag.dopunskiBroj</div>
+        </div>
+    }
+
+    @if (ViewBag.brojPrikaza <= 5)
+    {
+        <div style="display: flex; justify-content: center;">
+            @Html.ActionLink("Izvuci", "Index", "Game", new { lstApps = Json.Encode(ViewBag.listIWantToSend), dopunskiBroj = 0, showDopunski = false, brojPrikaza = ViewBag.brojPrikaza }, new { @class = "btn btn-warning" })
+        </div>
+    }
+    else if (ViewBag.brojPrikaza > 5 && ViewBag.showDopunski == false)
+    {
+        <div style="display: flex; justify-content: center;">
+            @Html.ActionLink("Izvuci dopunski", "Index", "Game", new { lstApps = Json.Encode(ViewBag.listIWantToSend), dopunskiBroj = 0, showDopunski = true, brojPrikaza = ViewBag.brojPrikaza }, new { @class = "btn btn-warning" })
+        </div>
+    }
+    else
+    {
+        <div style="display: flex; justify-content: center;">
+            @Html.ActionLink("Povratak na poečtak", "Index", "Home", new { }, new { @class = "btn btn-warning" })
+        </div>
+    }
